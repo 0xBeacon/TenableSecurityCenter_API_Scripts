@@ -9,8 +9,8 @@ To get this to work, you need to do a few things...
 -Asset group ID needs to pre-created and updated in script
 -Scan ID must be pre-created and updated in script
 ```
+
 Usage: python scan_launch.py -s <ip>
----
 ```
 Examples: 
 python scan_launch.py -s 10.10.10.10
