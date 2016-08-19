@@ -44,9 +44,9 @@ def usage():
 # Definitions 
 #-------------------------------------------------------------------
 #Security Center Info
-username = 'api'
-password = 'password'
-url = 'https://securitycenter/rest/'
+username = 'api'                                    #<-----Edit this line
+password = 'password'                               #<-----Edit this line
+url = 'https://securitycenter/rest/'                #<-----Edit this line
 headers = {'Content-type': 'application/json'}
 
 # Proxy
@@ -78,7 +78,7 @@ else:
 #------------------------------------------------------------------
 
 scan_json = {
-        "id":63,
+        "id":63,                                   #<-----Edit this line
         "name":"API_AUTOMATION",
         "description":"",
         "context":"",
