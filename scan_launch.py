@@ -150,7 +150,7 @@ def update_asset(scan):
         asset = {
         "definedIPs":scan
         }
-        s = requests.request('patch', url + 'asset/497',
+        s = requests.request('patch', url + 'asset/497',      #<----Edit this line
                     headers=headers,
                     cookies=cookie,
                     #proxies=proxy,
@@ -170,7 +170,7 @@ def update_asset(scan):
 def launch_scan():
     try:
         requests.packages.urllib3.disable_warnings()
-        s = requests.request('post', url + 'scan/63/launch',
+        s = requests.request('post', url + 'scan/63/launch',   #<----Edit this line
                     headers=headers,
                     cookies=cookie,
                     #proxies=proxy,
