@@ -52,21 +52,23 @@ headers = {'Content-type': 'application/json'}
 # Proxy
 #-------------------------------------------------------------------
 # Used for debugging communication with SecurityCenter
-whichproxy = 'fiddler'
-if whichproxy == 'fiddler':
+debug = 0
+if debug == 1:
+    # Use Fiddler Proxy
     proxy = {
               "http"  : "http://127.0.0.1:8888",
               "https" : "https://127.0.0.1:8888",
             }
-elif whichproxy == 'burp':
+elif debug == 2:
+    # Use Burp Suite Proxy
     proxy = {
               "http"  : "http://127.0.0.1:8080",
               "https" : "https://127.0.0.1:8080",
             }
-else:
+elif debug == 0:
     proxy = {
-              "http": None,
-              "https": None,
+              "http": "",
+              "https": "",
             }
 
 #------------------------------------------------------------------
@@ -134,10 +136,10 @@ def grab_token():
         tokenized_header = {'X-SecurityCenter': str(token)}
         headers.update(tokenized_header)
         if token == None:
-        	print "[-] Something is wrong with grabbing a token."
-        	sys.exit(1)
+            print "[-] Something is wrong with grabbing a token."
+            sys.exit(1)
         else:
-        	print "[+] Token successfully grabbed."
+            print "[+] Token successfully grabbed."
     except Exception, e:
         print str(e)
         sys.exit(1)
@@ -157,11 +159,11 @@ def update_asset(scan):
                     verify=False,
                     json=asset)
         if s.status_code == 403:
-        	print "[-] Something is wrong with the asset group update. Verify that you are using an IP address and not DNS name."
-        	sys.exit(1)   
+            print "[-] Something is wrong with the asset group update. Verify that you are using an IP address and not DNS name."
+            sys.exit(1)
         else:
-        	print "[+] Asset group successfully updated."
-        	asset_response = s.json()['response']['typeFields']
+            print "[+] Asset group successfully updated."
+            asset_response = s.json()['response']['typeFields']
     except Exception, e:
         print str(e)
         sys.exit(1)
@@ -178,9 +180,9 @@ def launch_scan():
                     json=scan_json)
         scan_response = s.json()['response']
         if "Invalid" in str(scan_response):
-        	print "[-] Something is wrong with the scan launch."
+            print "[-] Something is wrong with the scan launch."
         else:
-        	print "[+] Scan successfully launched."
+            print "[+] Scan successfully launched."
     except Exception, e:
         print str(e)
         sys.exit(1)
